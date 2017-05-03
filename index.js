@@ -24,8 +24,6 @@ app.get('/users', function(req, res) { //gets the list of urls added to db on th
 })
 
 
-
-
 function shortRoute(req, res) {
 	var short = req.params.shortie //look at where app.get is invoked on /:shortie route
 	mongoFunctions.shortLookup(short).then(exists => {
@@ -46,7 +44,7 @@ function urlRoute(req, res) {
 	var input = req.params[0];
 	var link = req.params[0].link;
 	var isAUrl = url.checkUrl(input);
-	var short = url.getShortCode();
+	const short = url.getShortCode();
 	/*
 	if(mongoFunctions.isDuplicateShort(short)) { //if shortCode generated is a duplicate, generate new short code
 		short = url.getShortCode();
@@ -64,7 +62,7 @@ function urlRoute(req, res) {
 				console.log('saved new entry');
 				mongoFunctions.insertEntry(input, short);
 				//res.json({original: input, shortCode: short});
-				var data = {original: input, shortCode: exists};
+				var data = {original: input, shortCode: short};
 				res.render('urlRoute', {data: data});
 			}
 

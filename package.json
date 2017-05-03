@@ -25,7 +25,8 @@
     "gulp-mocha": "^4.3.0",
     "gulp-mocha-co": "^0.4.1-co.3",
     "gulp-nodemon": "^2.2.1",
-    "mocha": "^3.2.0"
+    "mocha": "^3.2.0",
+    "sinon": "^2.2.0"
   },
   "dependencies": {
     "babel-core": "^6.24.1",

@@ -1,14 +1,16 @@
 const request = require('supertest');
 const express = require('express');
+const sinon = require('sinon');
 var chai = require('chai');
 var expect = chai.expect;
 
-var mongoose = require('mongoose'); //need to require mongoose in order for tests to connect
+const ejs = require('ejs');
+
 
 var server = request.agent("http://localhost:3000") //super useful to avoid EADRRINUSE error
 var url = require('./url.js')
-
 var UrlEntry = require('./mongoose.js');
+
 
 const app = express();
 
@@ -24,14 +26,14 @@ describe('UrlEntry', function() { //Url entries must contain an original url and
 	});
 });
 
+
 describe('GET /', function() { //welcome to the home page
-	it('respond with text', function(done) {
+	it('renders sucessfully', function(done) {
 		server
 		  .get('/')
 		  .expect(200)
 		  .end(function(err, res) {  //.expect() functions that fail will not throw instead they will return the assertion as an error to the .end() callback
 		  	if(err) return done(err);
-		  	expect(res.text).to.equal('Welcome to the URL shortener') 
 		  	done();
 		  });
 	});
