@@ -2,13 +2,14 @@ var express = require('express');
 var app = express();
 var port = process.env.PORT || 3000;
 
-var mongoose = require('mongoose'); //in it for the get users route
+var mongoose = require('mongoose'); 
 
 var bodyParser = require('body-parser');
 
 var mongoo = require('./mongoose.js'); 
 var url = require('./url.js');
 
+app.set('view engine', 'ejs');//set EJS to the view engine & res.render will look in the views folder for the ejs file to render res.render('profile') will look for the folder called profile
 
 var mongoFunctions = require('./dbSchemaFun.js');
 
@@ -31,7 +32,8 @@ function shortRoute(req, res) {
 		if(exists) {
 			var org = exists.original;
 			var shrt = exists.shortCode;
-			res.json({original: org, shortCode: shrt})
+			var data = {original: org, shortCode: shrt}
+			res.render('shortRoute', {data: data});
 		} else {
 			res.json({"error":"this is not a valid short code"})
 		}
@@ -45,21 +47,25 @@ function urlRoute(req, res) {
 	var link = req.params[0].link;
 	var isAUrl = url.checkUrl(input);
 	var short = url.getShortCode();
-
+	/*
 	if(mongoFunctions.isDuplicateShort(short)) { //if shortCode generated is a duplicate, generate new short code
 		short = url.getShortCode();
 	}
-	
+	*/
 	if(isAUrl) {
 		mongoFunctions.urlExists(input).then(exists => {
 			if (exists) {
 				console.log('returned old short code');
-				res.json({original: input, shortCode: exists});
+				//res.json({original: input, shortCode: exists});
+				var data = {original: input, shortCode: exists};
+				res.render('urlRoute', {data: data});
 			} 
 			else {
 				console.log('saved new entry');
 				mongoFunctions.insertEntry(input, short);
-				res.json({original: input, shortCode: short});
+				//res.json({original: input, shortCode: short});
+				var data = {original: input, shortCode: exists};
+				res.render('urlRoute', {data: data});
 			}
 
 

@@ -6,32 +6,7 @@ var urljs = require('./url.js')
 
 
 module.exports = {
-	/*getShortened: function() {
-		return mongoo.UrlEntry
-		  .find() //find everything
-		  .sort({ shortened: -1}) //sort in descending order of shortened
-		  .limit(1) //return the first/highest number
-		  .select({_id: 0, shortened: 1}) //only return shortened field
-		  .then(docs => { 
-		  	//if a document is found, return its shortened url plus one otherwise it's the first entry and the shortened url is zero
-		  	return docs.length === 1 ? docs[0].shortened + 1 : 0;
-		  }).catch((err) => {
-			console.log('errored');
-		});
-	}, */
-	/*urlExists: function(inp) {
-		//return mongoo.UrlEntry
-		return UrlEntry
-		.find({ original: inp }) //check if doc exists with that orignal url 
-		.then(doc => {
-			console.log('got here')
-			console.log(doc[0].shortCode)
-			return doc ? doc[0].shortCode : false
-			}) //return the shortcode for that entry or return false
-		.catch((err) => {
-			console.log('errored');
-		});
-	}, */
+	
 	shortLookup: function(sht) {
 		return UrlEntry
 		.find({shortCode: sht})
@@ -77,27 +52,7 @@ module.exports = {
 			}).catch((err) => {
 				console.log('errored');
 			}); */
-	},
-	
-	returnDocs: function() {
-		
-		//return mongoo.UrlEntry
-		return UrlEntry
-		  .find()
-		  .sort({ shortCode: -1 })
-		  .then(docs => {
-		  	return docs
-		  }).catch((err) => {
-		  	console.log('errored');
-		  })
-	},
-	index: (req, res, next) => {
-		UrlEntry.find({}, (error, users) => {
-			console.error(error('err', err))
-			console.log('found users', users)
-		})
 	}
-
 	
 }
 
