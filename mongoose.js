@@ -15,7 +15,13 @@ var url = process.env.MONGOLAB_URI;
 		console.log('Connection established to', url);
 	}
 }); */
-mongoose.connect(url);
+mongoose.connect(url, function(err) {
+	if(err) {
+		console.log(err);
+	} else {
+		console.log ('mongoose connection is successful on: ' + url);
+	}
+});
 
 
 var urlSchema = new Schema({ //create schema
