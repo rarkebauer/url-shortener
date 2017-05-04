@@ -16,7 +16,6 @@ var url = process.env.MONGOLAB_URI;
 	}
 }); */
 mongoose.connect(url);
-console.log(url);
 
 
 var urlSchema = new Schema({ //create schema
@@ -31,6 +30,3 @@ const UrlEntry = mongoose.model('UrlEntry', urlSchema) //create a model
 
 module.exports = UrlEntry;
 
-
-
-//export MONGOLAB_URI="mongodb://rarkebauer:herocupid23@ds131151.mlab.com:31151/urls"
