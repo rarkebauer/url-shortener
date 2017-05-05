@@ -19,7 +19,7 @@ mongoose.connect(url, function(err) {
 	if(err) {
 		console.log(err);
 	} else {
-		console.log ('mongoose connection is successful on: ' + url);
+		console.log ('mongoose connection is successful on: ' + 'mongolab');
 	}
 });
 
