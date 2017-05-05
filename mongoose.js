@@ -6,7 +6,7 @@ mongoose.Promise = global.Promise; //set mongoose promise to the globle promise 
 var Schema = mongoose.Schema;
 
 //mongoose.connect('mongodb://localhost:27017/urlShortener'); 
-var url = process.env.MONGOLAB_URI;
+var url = process.env.MONGODB_URI;
 //var url = 'mongodb://localhost:27017/urlShortener';
 /*mongoose.connect(url, function (err, db) {
 	if(err) {
